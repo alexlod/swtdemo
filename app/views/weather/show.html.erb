@@ -1,0 +1,20 @@
+<% content_for(:title, params[:zip]) %>
+<% count = 0 %>
+<% @forecast["forecast"]["txt_forecast"]["forecastday"].each do |day| %>
+  <% if count % 4 == 0 %>
+    <div class="row">
+  <% end %>
+      <div class="col-lg-3">
+        <div class="thumbnail" style="min-height: 250px;">
+          <img src="<%= day["icon_url"] %>" alt="<%= day["icon"] %>">
+          <div class="caption">
+            <h3><%= day["title"] %></h3>
+            <p><%= day["fcttext"] %></p>
+          </div>
+        </div>
+      </div>
+  <% if (count + 1) % 4 == 0 or count + 1 == @forecast["forecast"]["txt_forecast"]["forecastday"].length %>
+    </div>
+  <% end %>
+  <% count += 1 %>
+<% end %>

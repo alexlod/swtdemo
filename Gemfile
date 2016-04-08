@@ -12,7 +12,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 gem 'omniauth'
-gem "omniauth-google-oauth2"
+gem 'omniauth-google-oauth2'
+gem 'wunderground'
 
 group :development, :test do
   gem 'byebug'

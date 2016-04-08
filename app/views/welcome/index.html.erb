@@ -1,1 +1,14 @@
-Hello!
+<% if user_signed_in? %>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="input-group">
+        <input id="weather-zip" type="text" class="form-control" placeholder="Enter a 5-digit zip code to get the weather.">
+        <span class="input-group-btn">
+          <button class="btn btn-primary" weather-submit="true" type="button">Go</button>
+        </span>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <%= link_to "Login", "/auth/google_oauth2", class: "btn btn-primary" %>
+<% end %>

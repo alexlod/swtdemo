@@ -15,3 +15,9 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  $('[weather-submit]').on("click", function() {
+    window.location = "/weather/" + $("#weather-zip").val();
+  });
+});

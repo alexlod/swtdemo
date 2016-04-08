@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
     def user_signed_in?
       ! @current_user.nil?
     end
+    
+    def requires_login_or_redirect
+      return redirect_to :root, alert: "You must be logged in to access that page." unless user_signed_in?
+    end
 end
