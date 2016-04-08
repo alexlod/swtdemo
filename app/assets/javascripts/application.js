@@ -17,7 +17,8 @@
 //= require_tree .
 
 $(function() {
-  $('[weather-submit]').on("click", function() {
+  $("#weather-form").on("submit", function(e) {
+    e.preventDefault();
     window.location = "/weather/" + $("#weather-zip").val();
   });
 });
