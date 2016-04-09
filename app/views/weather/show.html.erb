@@ -1,6 +1,57 @@
+<div class="row">
+  <%= render partial: "weather/search_form" %>
+</div>
+<h1><%= @w_response["current_observation"]["display_location"]["full"] %> <%= params[:zip] %></h1>
+<div class="row">
+  <div class="col-lg-1">
+    <p class="text-center">
+      <img src="<%= @w_response["current_observation"]["icon_url"] %>" alt="<%= @w_response["current_observation"]["icon"] %>" />
+    </p>
+  </div>
+  <div class="col-lg-2">
+    <%= @w_response["current_observation"]["temp_f"] %> F
+  </div>
+  <div class="col-lg-9">
+    <%= @w_response["current_observation"]["relative_humidity"] %> humidity
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-1">
+    <p class="text-center"><%= @w_response["current_observation"]["weather"] %></p>
+  </div>
+  <div class="col-lg-2">
+    <%= @w_response["current_observation"]["precip_today_in"] %> inches
+  </div>
+  <div class="col-lg-9">
+    Wind: <%= @w_response["current_observation"]["wind_string"] %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-4">
+    <div id="text-success" class="hidden">
+      <div class="alert fade in alert-success"><button type="button" class="close" data-dismiss-success="true">&times;</button>The text has been sent!</div>
+    </div>
+    <div id="text-button-div" class="show">
+      <button class="btn btn-info" data-text-button="true" type="submit">Text Today's Weather</button>
+    </div>
+    <div id="text-form-div" class="hidden">
+      <form id="text-form">
+        <div class="form-group">
+          <input id="text-number" type="text" class="form-control" placeholder="Phone number, eg 4152134356">
+        </div>
+        <div class="form-group">
+          <textarea id="text-message" class="form-control" rows="2"><%= @w_response["current_observation"]["display_location"]["full"] %>: <%= @w_response["current_observation"]["weather"] %>, <%= @w_response["current_observation"]["temp_f"] %> F</textarea>
+        </div>
+        <input type="submit" id="text-submit" class="btn btn-primary" value="Send">
+        <a href="#" data-text-cancel="true">cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
+<h1>Forecast</h1>
 <% content_for(:title, params[:zip]) %>
 <% count = 0 %>
-<% @forecast["forecast"]["txt_forecast"]["forecastday"].each do |day| %>
+<% @w_response["forecast"]["txt_forecast"]["forecastday"].each do |day| %>
   <% if count % 4 == 0 %>
     <div class="row">
   <% end %>
@@ -13,7 +64,7 @@
           </div>
         </div>
       </div>
-  <% if (count + 1) % 4 == 0 or count + 1 == @forecast["forecast"]["txt_forecast"]["forecastday"].length %>
+  <% if (count + 1) % 4 == 0 or count + 1 == @w_response["forecast"]["txt_forecast"]["forecastday"].length %>
     </div>
   <% end %>
   <% count += 1 %>

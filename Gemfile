@@ -14,6 +14,7 @@ gem 'twitter-bootstrap-rails'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'wunderground'
+gem 'twilio-ruby', '~> 4.11.1'
 
 group :development, :test do
   gem 'byebug'
